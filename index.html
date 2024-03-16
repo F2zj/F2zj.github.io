@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amy, Te amo</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #FFD3E0;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  animation: changeBackground 10s infinite alternate;
+}
+
+@keyframes changeBackground {
+  0% { background-color: #FFD3E0; }
+  50% { background-color: #FFE0CC; }
+  100% { background-color: #FFD3E0; }
+}
+
+h1 {
+  text-align: center;
+  color: #FF6B6B;
+  font-size: 3em;
+  margin: 20px 0 0;
+  z-index: 10;
+  font-weight: 700;
+  transition: transform 0.3s ease-in-out;
+}
+
+h1:hover {
+  transform: rotate(5deg);
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  max-height: calc(100vh - 250px); /* Ajusta el tamaño del contenedor */
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.message {
+  font-size: 2em;
+  color: #FF6B6B;
+  animation: fadeOut 10s ease forwards;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  word-wrap: break-word; /* Permite que los textos se ajusten dentro del contenedor */
+}
+
+.message:hover {
+  transform: scale(1.1);
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.5em;
+  color: #FFFFFF;
+  background-color: #FF6B6B;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 0;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+button:hover {
+  background-color: #FF8C9E;
+  transform: translateY(-5px);
+}
+
+.emoji-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.emoji {
+  position: absolute;
+  font-size: 1.5em;
+  user-select: none;
+  opacity: 0.8;
+  cursor: grab;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+.emoji:active {
+  transform: scale(1.2);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes scale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+</style>
+</head>
+<body>
+<h1>Amy, Te amo</h1>
+<button onclick="generateMessage()">Haz click aquí</button>
+<div class="message-container"></div>
+<div class="emoji-container"></div>
+
+<script>
+let messageCount = 0;
+
+function generateMessage() {
+  const messages = [
+    "Eres la razón de mi sonrisa. ❤️",
+    "Siempre estás en mis pensamientos. ❤️",
+    "Eres mi mayor inspiración. ❤️",
+    "Cada día te amo más que ayer. ❤️",
+    "Juntos somos imparables. ❤️",
+    "Tu amor ilumina cada día. ❤️",
+    "Eres mi sol en un día nublado. ❤️",
+    "Cada momento contigo es un tesoro. ❤️",
+    "Eres mi sueño hecho realidad. ❤️",
+    "Contigo, cada día es especial. ❤️",
+    "Eres mi razón para seguir adelante. ❤️",
+    "Eres mi mayor fortuna. ❤️",
+    "Contigo, el amor es eterno. ❤️",
+    "Eres la melodía de mi corazón. ❤️",
+    "Nuestro amor es un cuento de hadas. ❤️",
+    "Eres mi mayor aventura. ❤️",
+    "Juntos somos invencibles. ❤️",
+    "Eres mi faro en la oscuridad. ❤️",
+    "Tu amor es mi refugio. ❤️",
+    "Eres mi destino. ❤️",
+    "Contigo, cada día es un regalo. ❤️",
+    "Eres mi inspiración diaria. ❤️",
+    "Juntos construimos sueños. ❤️",
+    "Eres mi paz en la tormenta. ❤️",
+    "Contigo, todo es posible. ❤️",
+    "Eres mi razón para sonreír. ❤️",
+    "Tu amor es mi mayor tesoro. ❤️",
+    "Eres mi complemento perfecto. ❤️",
+    "Contigo, el amor crece cada día. ❤️",
+    "Eres mi sueño hecho realidad. ❤️"
+  ];
+
+  const emojis = ['❤️', '💕', '🌟', '✨', '😍', '🌹', '💖', '🌈'];
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  const randomMessage = messages[randomIndex];
+  const messageContainer = document.querySelector(".message-container");
+  const emojiContainer = document.querySelector(".emoji-container");
+
+  if (messageCount >= 5) {
+    const oldMessage = document.querySelector(".message");
+    messageContainer.removeChild(oldMessage);
+  }
+
+  const messageElement = document.createElement("p");
+  messageElement.classList.add("message");
+  messageElement.textContent = randomMessage;
+  messageContainer.appendChild(messageElement);
+
+  messageCount++;
+}
+
+setInterval(() => {
+  const emojis = ['❤️', '💕', '🌟', '✨', '😍', '🌹', '💖', '🌈'];
+  const emojiContainer = document.querySelector(".emoji-container");
+  const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+  const emojiElement = document.createElement("div");
+  emojiElement.classList.add("emoji");
+  emojiElement.textContent = randomEmoji;
+  emojiElement.style.left = `${Math.random() * 100}vw`;
+  emojiElement.style.top = `${Math.random() * 100}vh`;
+  emojiElement.style.fontSize = `${Math.random() * 1.5 + 1}em`;
+
+  const animationType = ['float', 'rotate', 'scale', 'spin', 'pop', 'bounce'];
+  const randomAnimation = animationType[Math.floor(Math.random() * animationType.length)];
+  emojiElement.style.animation = `${randomAnimation} ${Math.random() * 3 + 1}s ease-in-out infinite`;
+
+  emojiContainer.appendChild(emojiElement);
+
+  setTimeout(() => {
+    emojiContainer.removeChild(emojiElement);
+  }, 15000);
+}, 200);
+</script>
+</body>
+</html>
